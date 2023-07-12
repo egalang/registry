@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_registry_main,registry.main,model_registry_main,base.group_user,1,1,1,1
+access_registry_stage,registry.stage,model_registry_stage,base.group_user,1,1,1,1
+access_registry_checklist,registry.checklist,model_registry_checklist,base.group_user,1,1,1,1
+access_registry_docstatus,registry.docstatus,model_registry_docstatus,base.group_user,1,1,1,1
+access_registry_doctype,registry.doctype,model_registry_doctype,base.group_user,1,1,1,1

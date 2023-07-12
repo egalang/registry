@@ -1,0 +1,161 @@
+<odoo>
+    <data>
+
+      <record id="project_sequence" model="ir.sequence">
+        <field name="name">Project Sequence</field>
+        <field name="code">project.registry.sequence</field>
+        <field name="prefix">POR</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+      </record>
+
+      <record id="view_registry_form" model="ir.ui.view">
+        <field name="name">registry.main.form</field>
+        <field name="model">registry.main</field>
+        <field name="arch" type="xml">
+            <form>
+              <header>
+                <field name="stage" widget="statusbar" options="{'clickable':'1'}" />
+              </header>
+              <sheet>
+                <div class="oe_title">
+                  <h1> 
+                    <field name="project_number" style="font-weight: bold;"/>
+                  </h1>
+                </div>
+                <group>
+                  <field name="project_name"/>
+                  <field name="project_description"/>
+                  <field name="project_location"/>
+                  <field name="project_owner"/>
+                  <field name="contact_person"/>
+                  <field name="meeting_schedule"/>
+                </group>
+
+                <notebook>
+                  <page name="check_list" string="Checklist">
+                    <group >
+                      <field name="reg_checklist" widget="one2many_list" string=" ">
+                        <tree>
+                          <field name="doc_type"/>
+                          <field name="doc_description"/>
+                          <field name="doc_status"/>
+                        </tree>
+                      </field>
+                    </group>
+                  </page>
+                </notebook>
+              </sheet>
+              <div class="oe_chatter">
+                <field name="message_follower_ids"/>
+                <field name="activity_ids"/>
+                <field name="message_ids"/>
+              </div>
+            </form>
+        </field>
+      </record>
+      
+      <record id="view_registry_tree" model="ir.ui.view">
+        <field name="name">registry.main.tree</field>
+        <field name="model">registry.main</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="project_number"/>
+                <field name="project_name"/>
+                <field name="project_description"/>
+                <field name="project_location"/>
+                <field name="project_owner"/>
+                <field name="contact_person"/>
+                <field name="meeting_schedule"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="view_registry_checklist_form" model="ir.ui.view">
+        <field name="name">registry.checklist.form</field>
+        <field name="model">registry.checklist</field>
+        <field name="arch" type="xml">
+          <form>
+            <sheet>
+              <group>
+                <field name="doc_type"/>
+                <field name="doc_description"/>
+                <field name="doc_status"/>
+              </group>
+            </sheet>
+          </form>
+        </field>
+      </record>
+
+      <record id="registry_stages_action" model="ir.actions.act_window">
+        <field name="name">Stages</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">registry.stage</field>
+        <field name="view_mode">tree,form</field>
+      </record>
+
+      <record id="registry_doctype_action" model="ir.actions.act_window">
+        <field name="name">Document Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">registry.doctype</field>
+        <field name="view_mode">tree,form</field>
+      </record>
+
+      <record id="registry_docstatus_action" model="ir.actions.act_window">
+        <field name="name">Document Status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">registry.docstatus</field>
+        <field name="view_mode">tree,form</field>
+      </record>
+
+      <record id="registry_main_action" model="ir.actions.act_window">
+        <field name="name">Project Opportunity Registry</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">registry.main</field>
+        <field name="view_mode">tree,form</field>
+      </record>
+
+      <record id="new_stage_id" model="registry.stage">
+        <field name="name">New</field>
+      </record>
+
+      <record id="new_reg_doctype" model="registry.doctype">
+        <field name="name"/>
+      </record>
+
+      <record id="new_reg_docstatus" model="registry.docstatus">
+        <field name="name"/>
+      </record>
+
+      <menuitem id="menu_registry_root"
+        name="Project Opportunity Registry"
+        sequence="10"
+        action="registry_main_action"/>
+
+      <menuitem id="menu_registry_configuration"
+        name="Configuration"
+        parent="menu_registry_root"
+        sequence="10"/>
+
+      <menuitem id="menu_registry_stages" 
+        name="Stages"
+        parent="menu_registry_configuration" 
+        sequence="10"
+        action="registry_stages_action"/>
+
+      <menuitem id="menu_doc_type" 
+        name="Document Type"
+        parent="menu_registry_configuration" 
+        sequence="10"
+        action="registry_doctype_action"/>
+
+      <menuitem id="menu_doc_status" 
+        name="Document Status"
+        parent="menu_registry_configuration" 
+        sequence="10"
+        action="registry_docstatus_action"/>
+
+    
+
+    </data>
+</odoo>
