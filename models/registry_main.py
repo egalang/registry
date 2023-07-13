@@ -19,7 +19,7 @@ class RegistryMain(models.Model):
     project_description=fields.Text(string='Project Description', tracking=True)
     project_location=fields.Char(string='Project Location', required=True, tracking=True)
     project_owner=fields.Char(string='Project Owner', required=True, tracking=True)
-    contact_person=fields.Char(string='Contact Person', required=True, tracking=True)
+    contact_person=fields.Many2one('res.partner', string='Contact Person', required=True, tracking=True)
     meeting_schedule=fields.Date(string='Pre bid Meeting Schedule', tracking=True)
     stage = fields.Many2one('registry.stage', string="Stage", default=lambda self: self._default_stage(), tracking=True)
     reg_checklist = fields.One2many('registry.checklist', 'reg_check')
